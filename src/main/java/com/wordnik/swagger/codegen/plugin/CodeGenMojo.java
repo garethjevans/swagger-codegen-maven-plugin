@@ -17,6 +17,8 @@ package com.wordnik.swagger.codegen.plugin;
  */
 
 import java.io.File;
+import java.util.ArrayList;
+import java.util.List;
 
 import org.apache.maven.plugin.AbstractMojo;
 import org.apache.maven.plugin.MojoExecutionException;
@@ -52,7 +54,6 @@ public class CodeGenMojo extends AbstractMojo {
 	 * Folder containing the template files.
 	 * 
 	 * @parameter
-	 * @required
 	 */
 	private File templateDirectory;
 
@@ -65,8 +66,17 @@ public class CodeGenMojo extends AbstractMojo {
 	private String language;
 
 	public void execute() throws MojoExecutionException {
-		String[] args = new String[] { "-l", language, "-o", output.toString(), "-i", inputSpec, "-t",
-				templateDirectory.toString() };
-		Codegen.main(args);
+		List<String> argsList = new ArrayList<String>();
+		argsList.add("-l");
+		argsList.add(language);
+		argsList.add("-o");
+		argsList.add(output.toString());
+		argsList.add("-i");
+		argsList.add(inputSpec);
+		if (templateDirectory != null) {
+			argsList.add("-t");
+			argsList.add(templateDirectory.toString());
+		}
+		Codegen.main(argsList.toArray(new String[argsList.size()]));
 	}
 }
