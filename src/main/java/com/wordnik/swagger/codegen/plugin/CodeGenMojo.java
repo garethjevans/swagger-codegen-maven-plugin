@@ -24,49 +24,45 @@ import org.apache.maven.plugin.AbstractMojo;
 import org.apache.maven.plugin.MojoExecutionException;
 
 import com.wordnik.swagger.codegen.Codegen;
+import org.apache.maven.plugins.annotations.LifecyclePhase;
+import org.apache.maven.plugins.annotations.Mojo;
+import org.apache.maven.plugins.annotations.Parameter;
 
 /**
  * Goal which generates client/server code from a swagger json definition.
- *
- * @goal generate
- * 
- * @phase generate-sources
  */
+@Mojo(name = "generate", defaultPhase = LifecyclePhase.GENERATE_SOURCES)
 public class CodeGenMojo extends AbstractMojo {
 
 	/**
-	 * Location of the file.
-	 * 
-	 * @parameter expression="${project.build.directory}"
-	 * @required
+	 * Location of the output directory.
 	 */
+    @Parameter(name = "output",
+            property = "swagger.codegen.maven.plugin.output",
+            defaultValue = "${project.build.directory}/generated-sources/swagger")
 	private File output;
 
 	/**
 	 * Location of the swagger spec, as URL or file.
-	 * 
-	 * @parameter
-	 * @required
 	 */
+    @Parameter(name = "inputSpec", required = true)
 	private String inputSpec;
 
 	/**
 	 * Folder containing the template files.
-	 * 
-	 * @parameter
 	 */
+    @Parameter(name = "templateDirectory")
 	private File templateDirectory;
 
 	/**
 	 * Client language to generate.
-	 * 
-	 * @parameter
-	 * @required
 	 */
+    @Parameter(name = "language", required = true)
 	private String language;
 
+    @Override
 	public void execute() throws MojoExecutionException {
-		List<String> argsList = new ArrayList<String>();
+		List<String> argsList = new ArrayList<>();
 		argsList.add("-l");
 		argsList.add(language);
 		argsList.add("-o");
