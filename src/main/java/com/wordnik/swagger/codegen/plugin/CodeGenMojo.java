@@ -22,13 +22,14 @@ import org.apache.maven.plugin.MojoExecutionException;
 import org.apache.maven.plugins.annotations.LifecyclePhase;
 import org.apache.maven.plugins.annotations.Mojo;
 import org.apache.maven.plugins.annotations.Parameter;
+import org.apache.maven.project.MavenProject;
 
 import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
 
 /**
- * Goal which generates client/server code from a swagger json definition.
+ * Goal which generates client/server code from a swagger json/yaml definition.
  */
 @Mojo(name = "generate", defaultPhase = LifecyclePhase.GENERATE_SOURCES)
 public class CodeGenMojo extends AbstractMojo {
@@ -59,6 +60,20 @@ public class CodeGenMojo extends AbstractMojo {
     @Parameter(name = "language", required = true)
     private String language;
 
+
+    /**
+     * Add the output directory to the project as a source root, so that the
+     * generated java types are compiled and included in the project artifact.
+     */
+    @Parameter(defaultValue = "true")
+    private boolean addCompileSourceRoot = true;
+
+    /**
+     * The project being built.
+     */
+    @Parameter(readonly = true, required = true, defaultValue = "${project}")
+    private MavenProject project;
+
     @Override
     public void execute() throws MojoExecutionException {
         List<String> argsList = new ArrayList<>();
@@ -73,5 +88,9 @@ public class CodeGenMojo extends AbstractMojo {
             argsList.add(templateDirectory.toString());
         }
         Codegen.main(argsList.toArray(new String[argsList.size()]));
+
+        if (addCompileSourceRoot) {
+            project.addCompileSourceRoot(output.toString());
+        }
     }
 }

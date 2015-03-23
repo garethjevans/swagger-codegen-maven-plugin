@@ -38,4 +38,5 @@ mvn clean compile
 - `language` - target generation language
 - `output` - target output path (default is `${project.build.directory}/generated-sources/swagger`)
 - `templateDirectory` - directory with mustache templates
+- `addCompileSourceRoot` - add the output directory to the project as a source root (`true` by default)
 
