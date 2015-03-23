@@ -16,17 +16,16 @@ package com.wordnik.swagger.codegen.plugin;
  * limitations under the License.
  */
 
-import java.io.File;
-import java.util.ArrayList;
-import java.util.List;
-
+import com.wordnik.swagger.codegen.Codegen;
 import org.apache.maven.plugin.AbstractMojo;
 import org.apache.maven.plugin.MojoExecutionException;
-
-import com.wordnik.swagger.codegen.Codegen;
 import org.apache.maven.plugins.annotations.LifecyclePhase;
 import org.apache.maven.plugins.annotations.Mojo;
 import org.apache.maven.plugins.annotations.Parameter;
+
+import java.io.File;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Goal which generates client/server code from a swagger json definition.
@@ -34,45 +33,45 @@ import org.apache.maven.plugins.annotations.Parameter;
 @Mojo(name = "generate", defaultPhase = LifecyclePhase.GENERATE_SOURCES)
 public class CodeGenMojo extends AbstractMojo {
 
-	/**
-	 * Location of the output directory.
-	 */
+    /**
+     * Location of the output directory.
+     */
     @Parameter(name = "output",
             property = "swagger.codegen.maven.plugin.output",
             defaultValue = "${project.build.directory}/generated-sources/swagger")
-	private File output;
+    private File output;
 
-	/**
-	 * Location of the swagger spec, as URL or file.
-	 */
+    /**
+     * Location of the swagger spec, as URL or file.
+     */
     @Parameter(name = "inputSpec", required = true)
-	private String inputSpec;
+    private String inputSpec;
 
-	/**
-	 * Folder containing the template files.
-	 */
+    /**
+     * Folder containing the template files.
+     */
     @Parameter(name = "templateDirectory")
-	private File templateDirectory;
+    private File templateDirectory;
 
-	/**
-	 * Client language to generate.
-	 */
+    /**
+     * Client language to generate.
+     */
     @Parameter(name = "language", required = true)
-	private String language;
+    private String language;
 
     @Override
-	public void execute() throws MojoExecutionException {
-		List<String> argsList = new ArrayList<>();
-		argsList.add("-l");
-		argsList.add(language);
-		argsList.add("-o");
-		argsList.add(output.toString());
-		argsList.add("-i");
-		argsList.add(inputSpec);
-		if (templateDirectory != null) {
-			argsList.add("-t");
-			argsList.add(templateDirectory.toString());
-		}
-		Codegen.main(argsList.toArray(new String[argsList.size()]));
-	}
+    public void execute() throws MojoExecutionException {
+        List<String> argsList = new ArrayList<>();
+        argsList.add("-l");
+        argsList.add(language);
+        argsList.add("-o");
+        argsList.add(output.toString());
+        argsList.add("-i");
+        argsList.add(inputSpec);
+        if (templateDirectory != null) {
+            argsList.add("-t");
+            argsList.add(templateDirectory.toString());
+        }
+        Codegen.main(argsList.toArray(new String[argsList.size()]));
+    }
 }
