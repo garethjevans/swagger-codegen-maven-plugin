@@ -16,7 +16,12 @@ package com.wordnik.swagger.codegen.plugin;
  * limitations under the License.
  */
 
-import com.wordnik.swagger.codegen.Codegen;
+import com.wordnik.swagger.codegen.ClientOptInput;
+import com.wordnik.swagger.codegen.ClientOpts;
+import com.wordnik.swagger.codegen.CodegenConfig;
+import com.wordnik.swagger.codegen.DefaultGenerator;
+import com.wordnik.swagger.models.Swagger;
+import io.swagger.parser.SwaggerParser;
 import org.apache.maven.plugin.AbstractMojo;
 import org.apache.maven.plugin.MojoExecutionException;
 import org.apache.maven.plugins.annotations.LifecyclePhase;
@@ -25,8 +30,9 @@ import org.apache.maven.plugins.annotations.Parameter;
 import org.apache.maven.project.MavenProject;
 
 import java.io.File;
-import java.util.ArrayList;
-import java.util.List;
+import java.util.ServiceLoader;
+
+import static com.wordnik.swagger.codegen.plugin.AdditionalParams.TEMPLATE_DIR_PARAM;
 
 /**
  * Goal which generates client/server code from a swagger json/yaml definition.
@@ -76,21 +82,37 @@ public class CodeGenMojo extends AbstractMojo {
 
     @Override
     public void execute() throws MojoExecutionException {
-        List<String> argsList = new ArrayList<>();
-        argsList.add("-l");
-        argsList.add(language);
-        argsList.add("-o");
-        argsList.add(output.toString());
-        argsList.add("-i");
-        argsList.add(inputSpec);
-        if (templateDirectory != null) {
-            argsList.add("-t");
-            argsList.add(templateDirectory.toString());
+        Swagger swagger = new SwaggerParser().read(inputSpec);
+
+        CodegenConfig config = forName(language);
+        config.setOutputDir(output.getAbsolutePath());
+
+        if (null != templateDirectory) {
+            config.additionalProperties().put(TEMPLATE_DIR_PARAM, templateDirectory.getAbsolutePath());
         }
-        Codegen.main(argsList.toArray(new String[argsList.size()]));
+
+        ClientOptInput input = new ClientOptInput().opts(new ClientOpts()).swagger(swagger);
+        input.setConfig(config);
+        new DefaultGenerator().opts(input).generate();
 
         if (addCompileSourceRoot) {
             project.addCompileSourceRoot(output.toString());
+        }
+    }
+
+    private CodegenConfig forName(String name) {
+        ServiceLoader<CodegenConfig> loader = ServiceLoader.load(CodegenConfig.class);
+        for (CodegenConfig config : loader) {
+            if (config.getName().equals(name)) {
+                return config;
+            }
+        }
+
+        // else try to load directly
+        try {
+            return (CodegenConfig) Class.forName(name).newInstance();
+        } catch (Exception e) {
+            throw new RuntimeException("Can't load config class with name ".concat(name), e);
         }
     }
 }

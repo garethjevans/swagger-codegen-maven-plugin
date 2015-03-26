@@ -48,7 +48,7 @@
 
         <dependency>
             <groupId>com.wordnik</groupId>
-            <artifactId>swagger-codegen-distribution</artifactId>
+            <artifactId>swagger-codegen</artifactId>
             <version>${swagger-codegen.version}</version>
         </dependency>
 
