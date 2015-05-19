@@ -3,28 +3,40 @@
 
     <modelVersion>4.0.0</modelVersion>
 
-    <groupId>com.wordnik.swagger</groupId>
+	<parent>
+        <groupId>org.sonatype.oss</groupId>
+        <artifactId>oss-parent</artifactId>
+        <version>7</version>
+    </parent>
+
+	<groupId>org.garethevans.maven.plugins</groupId>
     <artifactId>swagger-codegen-maven-plugin</artifactId>
     <version>0.0.1-SNAPSHOT</version>
 
     <packaging>maven-plugin</packaging>
 
     <name>swagger-codegen-maven-plugin Maven Mojo</name>
-    <url>http://swagger.io</url>
+	<description>maven plugin to build modules from swagger codegen</description>
+	<url>https://github.com/garethjevans/swagger-codegen-maven-plugin</url>
 
+	<licenses>
+		<license>
+			<name>The Apache Software License, Version 2.0</name>
+			<url>http://www.apache.org/licenses/LICENSE-2.0.txt</url>
+		</license>
+	</licenses>
+
+	<developers>
+		<developer>
+			<name>Gareth Evans</name>
+			<email>gareth@bryncynfelin.co.uk</email>
+		</developer>
+	</developers>
 
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <swagger-codegen.version>2.1.2-M1</swagger-codegen.version>
     </properties>
-
-    <licenses>
-        <license>
-            <name>The Apache Software License, Version 2.0</name>
-            <url>http://www.apache.org/licenses/LICENSE-2.0.txt</url>
-            <distribution>repo</distribution>
-        </license>
-    </licenses>
 
     <scm>
         <connection>scm:git:git@github.com:garethjevans/swagger-codegen-maven-plugin.git</connection>
@@ -33,32 +45,27 @@
     </scm>
 
     <dependencies>
-
         <dependency>
             <groupId>org.apache.maven</groupId>
             <artifactId>maven-plugin-api</artifactId>
             <version>3.3.1</version>
         </dependency>
-
         <dependency>
             <groupId>org.apache.maven.plugin-tools</groupId>
             <artifactId>maven-plugin-annotations</artifactId>
             <version>3.4</version>
         </dependency>
-
         <dependency>
             <groupId>com.wordnik</groupId>
             <artifactId>swagger-codegen</artifactId>
             <version>${swagger-codegen.version}</version>
         </dependency>
-
         <dependency>
             <groupId>junit</groupId>
             <artifactId>junit</artifactId>
             <version>4.12</version>
             <scope>test</scope>
         </dependency>
-
     </dependencies>
 
     <build>
@@ -68,6 +75,9 @@
                     <groupId>org.apache.maven.plugins</groupId>
                     <artifactId>maven-plugin-plugin</artifactId>
                     <version>3.4</version>
+					<configuration>
+                    	<skipErrorNoDescriptorsFound>true</skipErrorNoDescriptorsFound>
+                	</configuration>
                     <executions>
                         <execution>
                             <id>mojo-descriptor</id>
@@ -112,5 +122,27 @@
             </plugin>
         </plugins>
     </build>
+	
+	<profiles>
+		<profile>
+			<id>sign-artifacts</id>
+			<build>
+				<plugins>
+					<plugin>
+						<artifactId>maven-gpg-plugin</artifactId>
+						<executions>
+							<execution>
+								<id>sign-artifacts</id>
+								<phase>verify</phase>
+								<goals>
+									<goal>sign</goal>
+								</goals>
+							</execution>
+						</executions>
+					</plugin>
+				</plugins>
+			</build>
+		</profile>
+	</profiles>
 
 </project>
