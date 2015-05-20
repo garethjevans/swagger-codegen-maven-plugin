@@ -9,7 +9,7 @@
         <version>7</version>
     </parent>
 
-	<groupId>org.garethevans.maven.plugins</groupId>
+	<groupId>com.garethevans.plugin</groupId>
     <artifactId>swagger-codegen-maven-plugin</artifactId>
     <version>0.0.1-SNAPSHOT</version>
 
@@ -129,7 +129,9 @@
 			<build>
 				<plugins>
 					<plugin>
+						<groupId>org.apache.maven.plugins</groupId>
 						<artifactId>maven-gpg-plugin</artifactId>
+						<version>1.5</version>
 						<executions>
 							<execution>
 								<id>sign-artifacts</id>
