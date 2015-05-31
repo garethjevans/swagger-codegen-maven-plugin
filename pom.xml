@@ -3,35 +3,35 @@
 
     <modelVersion>4.0.0</modelVersion>
 
-	<parent>
+    <parent>
         <groupId>org.sonatype.oss</groupId>
         <artifactId>oss-parent</artifactId>
         <version>7</version>
     </parent>
 
-	<groupId>com.garethevans.plugin</groupId>
+    <groupId>com.garethevans.plugin</groupId>
     <artifactId>swagger-codegen-maven-plugin</artifactId>
     <version>0.0.1-SNAPSHOT</version>
 
     <packaging>maven-plugin</packaging>
 
     <name>swagger-codegen-maven-plugin Maven Mojo</name>
-	<description>maven plugin to build modules from swagger codegen</description>
-	<url>https://github.com/garethjevans/swagger-codegen-maven-plugin</url>
+    <description>maven plugin to build modules from swagger codegen</description>
+    <url>https://github.com/garethjevans/swagger-codegen-maven-plugin</url>
 
-	<licenses>
-		<license>
-			<name>The Apache Software License, Version 2.0</name>
-			<url>http://www.apache.org/licenses/LICENSE-2.0.txt</url>
-		</license>
-	</licenses>
+    <licenses>
+        <license>
+            <name>The Apache Software License, Version 2.0</name>
+            <url>http://www.apache.org/licenses/LICENSE-2.0.txt</url>
+        </license>
+    </licenses>
 
-	<developers>
-		<developer>
-			<name>Gareth Evans</name>
-			<email>gareth@bryncynfelin.co.uk</email>
-		</developer>
-	</developers>
+    <developers>
+        <developer>
+            <name>Gareth Evans</name>
+            <email>gareth@bryncynfelin.co.uk</email>
+        </developer>
+    </developers>
 
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
@@ -75,9 +75,9 @@
                     <groupId>org.apache.maven.plugins</groupId>
                     <artifactId>maven-plugin-plugin</artifactId>
                     <version>3.4</version>
-					<configuration>
-                    	<skipErrorNoDescriptorsFound>true</skipErrorNoDescriptorsFound>
-                	</configuration>
+                    <configuration>
+                        <skipErrorNoDescriptorsFound>true</skipErrorNoDescriptorsFound>
+                    </configuration>
                     <executions>
                         <execution>
                             <id>mojo-descriptor</id>
@@ -122,29 +122,29 @@
             </plugin>
         </plugins>
     </build>
-	
-	<profiles>
-		<profile>
-			<id>sign-artifacts</id>
-			<build>
-				<plugins>
-					<plugin>
-						<groupId>org.apache.maven.plugins</groupId>
-						<artifactId>maven-gpg-plugin</artifactId>
-						<version>1.5</version>
-						<executions>
-							<execution>
-								<id>sign-artifacts</id>
-								<phase>verify</phase>
-								<goals>
-									<goal>sign</goal>
-								</goals>
-							</execution>
-						</executions>
-					</plugin>
-				</plugins>
-			</build>
-		</profile>
-	</profiles>
+    
+    <profiles>
+        <profile>
+            <id>sign-artifacts</id>
+            <build>
+                <plugins>
+                    <plugin>
+                        <groupId>org.apache.maven.plugins</groupId>
+                        <artifactId>maven-gpg-plugin</artifactId>
+                        <version>1.5</version>
+                        <executions>
+                            <execution>
+                                <id>sign-artifacts</id>
+                                <phase>verify</phase>
+                                <goals>
+                                    <goal>sign</goal>
+                                </goals>
+                            </execution>
+                        </executions>
+                    </plugin>
+                </plugins>
+            </build>
+        </profile>
+    </profiles>
 
 </project>
