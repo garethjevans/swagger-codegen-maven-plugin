@@ -11,9 +11,9 @@ Usage
 Add to your `build->plugins` section (default phase is `generate-sources` phase)
 ```xml
 <plugin>
-    <groupId>com.wordnik.swagger</groupId>
+    <groupId>com.garethevans.plugin</groupId>
     <artifactId>swagger-codegen-maven-plugin</artifactId>
-    <version>0.0.1-SNAPSHOT</version>
+    <version>${project.version}</version>
     <executions>
         <execution>
             <goals>
