@@ -43,3 +43,6 @@ mvn clean compile
 - `templateDirectory` - directory with mustache templates
 - `addCompileSourceRoot` - add the output directory to the project as a source root (`true` by default)
 
+-- 
+[maven-url]: https://search.maven.org/#search%7Cga%7C1%7Cswagger-codegen-maven-plugin
+[maven-img]: https://img.shields.io/maven-central/v/com.garethevans.plugin/swagger-codegen-maven-plugin
