@@ -13,6 +13,10 @@
     <artifactId>swagger-codegen-maven-plugin</artifactId>
     <version>0.0.1-SNAPSHOT</version>
 
+	<prerequisites>
+		<maven>2.2.1</maven>
+	</prerequisites>
+
     <packaging>maven-plugin</packaging>
 
     <name>swagger-codegen-maven-plugin Maven Mojo</name>
@@ -45,10 +49,26 @@
     </scm>
 
     <dependencies>
+		<dependency>
+            <groupId>org.apache.maven</groupId>
+            <artifactId>maven-core</artifactId>
+            <version>3.2.5</version>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.maven</groupId>
+            <artifactId>maven-artifact</artifactId>
+            <version>3.2.5</version>
+            <scope>provided</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.maven</groupId>
+            <artifactId>maven-compat</artifactId>
+            <version>3.2.5</version>
+        </dependency>
         <dependency>
             <groupId>org.apache.maven</groupId>
             <artifactId>maven-plugin-api</artifactId>
-            <version>3.3.1</version>
+            <version>3.2.5</version>
         </dependency>
         <dependency>
             <groupId>org.apache.maven.plugin-tools</groupId>
@@ -64,6 +84,12 @@
             <groupId>junit</groupId>
             <artifactId>junit</artifactId>
             <version>4.12</version>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-test</artifactId>
+            <version>4.1.6.RELEASE</version>
             <scope>test</scope>
         </dependency>
     </dependencies>
