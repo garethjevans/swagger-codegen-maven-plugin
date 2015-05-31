@@ -2,6 +2,7 @@ swagger-codegen-maven-plugin
 ============================
 
 [![Build Status](https://travis-ci.org/garethjevans/swagger-codegen-maven-plugin.svg?branch=master)](https://travis-ci.org/garethjevans/swagger-codegen-maven-plugin)
+[![Maven version][maven-img]][maven-url]
 
 A Maven plugin to support the [swagger](http://swagger.io) code generation project
 
