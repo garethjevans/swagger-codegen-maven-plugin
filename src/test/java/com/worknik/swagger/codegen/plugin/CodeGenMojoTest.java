@@ -1,7 +1,6 @@
 package com.worknik.swagger.codegen.plugin;
 
 import java.io.File;
-import java.io.FileNotFoundException;
 
 import org.apache.maven.plugin.MojoExecutionException;
 import org.junit.Test;
