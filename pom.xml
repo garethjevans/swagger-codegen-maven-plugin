@@ -39,7 +39,7 @@
 
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-        <swagger-codegen.version>2.1.2-M1</swagger-codegen.version>
+        <swagger-codegen.version>2.1.2</swagger-codegen.version>
     </properties>
 
     <scm>
@@ -76,7 +76,7 @@
             <version>3.4</version>
         </dependency>
         <dependency>
-            <groupId>com.wordnik</groupId>
+            <groupId>io.swagger</groupId>
             <artifactId>swagger-codegen</artifactId>
             <version>${swagger-codegen.version}</version>
         </dependency>
@@ -148,7 +148,7 @@
             </plugin>
         </plugins>
     </build>
-    
+
     <profiles>
         <profile>
             <id>sign-artifacts</id>
