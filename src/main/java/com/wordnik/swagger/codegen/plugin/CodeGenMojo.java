@@ -16,10 +16,9 @@ package com.wordnik.swagger.codegen.plugin;
  * limitations under the License.
  */
 
-import io.swagger.codegen.ClientOptInput;
-import io.swagger.codegen.ClientOpts;
-import io.swagger.codegen.CodegenConfig;
-import io.swagger.codegen.DefaultGenerator;
+import config.Config;
+import config.ConfigParser;
+import io.swagger.codegen.*;
 import io.swagger.models.Swagger;
 import io.swagger.parser.SwaggerParser;
 import org.apache.maven.plugin.AbstractMojo;
@@ -75,6 +74,13 @@ public class CodeGenMojo extends AbstractMojo {
     private boolean addCompileSourceRoot = true;
 
     /**
+     * Location for a configuration file for customisation of the swagger client code generation
+     *
+     */
+    @Parameter(name = "configFile")
+    private String configFile;
+
+    /**
      * The project being built.
      */
     @Parameter(readonly = true, required = true, defaultValue = "${project}")
@@ -92,11 +98,26 @@ public class CodeGenMojo extends AbstractMojo {
         }
 
         ClientOptInput input = new ClientOptInput().opts(new ClientOpts()).swagger(swagger);
+        if (null != configFile) {
+            applyConfigFileSettings(config);
+        }
+
         input.setConfig(config);
         new DefaultGenerator().opts(input).generate();
 
         if (addCompileSourceRoot) {
             project.addCompileSourceRoot(output.toString());
+        }
+    }
+
+    private void applyConfigFileSettings(final CodegenConfig config) {
+        Config genConfig = ConfigParser.read(configFile);
+        if (null != genConfig) {
+            for (CliOption langCliOption : config.cliOptions()) {
+                if (genConfig.hasOption(langCliOption.getOpt())) {
+                    config.additionalProperties().put(langCliOption.getOpt(), genConfig.getOption(langCliOption.getOpt()));
+                }
+            }
         }
     }
 
