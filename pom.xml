@@ -9,7 +9,7 @@
         <version>7</version>
     </parent>
 
-    <groupId>com.garethevans.plugin</groupId>
+    <groupId>com.orange.apidsif.plugin</groupId>
     <artifactId>swagger-codegen-maven-plugin</artifactId>
     <version>0.0.1-SNAPSHOT</version>
 
@@ -20,8 +20,8 @@
     <packaging>maven-plugin</packaging>
 
     <name>swagger-codegen-maven-plugin Maven Mojo</name>
-    <description>maven plugin to build modules from swagger codegen</description>
-    <url>https://github.com/garethjevans/swagger-codegen-maven-plugin</url>
+    <description>maven plugin to build modules from swagger codegen. Fork du plugin de gareth evans : https://github.com/garethjevans/swagger-codegen-maven-plugin.git </description>
+    <url>https://github.com/herveDarritchon/swagger-codegen-maven-plugin.git</url>
 
     <licenses>
         <license>
@@ -35,17 +35,21 @@
             <name>Gareth Evans</name>
             <email>gareth@bryncynfelin.co.uk</email>
         </developer>
+        <developer>
+            <name>Darritchon Hervé</name>
+            <email>herve.darritchon@orange.com</email>
+        </developer>
     </developers>
 
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-        <swagger-codegen.version>2.1.2-M1</swagger-codegen.version>
+        <swagger-codegen.version>2.1.2</swagger-codegen.version>
     </properties>
 
     <scm>
-        <connection>scm:git:git@github.com:garethjevans/swagger-codegen-maven-plugin.git</connection>
-        <developerConnection>scm:git:git@github.com:garethjevans/swagger-codegen-maven-plugin.git</developerConnection>
-        <url>https://github.com/garethjevans/swagger-codegen-maven-plugin</url>
+        <connection>scm:git:git@github.com:herveDarritchon/swagger-codegen-maven-plugin.git</connection>
+        <developerConnection>scm:git:git@github.com:herveDarritchon/swagger-codegen-maven-plugin.git</developerConnection>
+        <url>https://github.com/herveDarritchon/swagger-codegen-maven-plugin.git</url>
     </scm>
 
     <dependencies>
@@ -76,7 +80,7 @@
             <version>3.4</version>
         </dependency>
         <dependency>
-            <groupId>com.wordnik</groupId>
+            <groupId>io.swagger</groupId>
             <artifactId>swagger-codegen</artifactId>
             <version>${swagger-codegen.version}</version>
         </dependency>
