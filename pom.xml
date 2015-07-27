@@ -9,7 +9,7 @@
         <version>7</version>
     </parent>
 
-    <groupId>com.garethevans.plugin</groupId>
+    <groupId>com.orange.apidsif.plugin</groupId>
     <artifactId>swagger-codegen-maven-plugin</artifactId>
     <version>0.0.1-SNAPSHOT</version>
 
@@ -20,8 +20,8 @@
     <packaging>maven-plugin</packaging>
 
     <name>swagger-codegen-maven-plugin Maven Mojo</name>
-    <description>maven plugin to build modules from swagger codegen</description>
-    <url>https://github.com/garethjevans/swagger-codegen-maven-plugin</url>
+    <description>maven plugin to build modules from swagger codegen. Fork du plugin de gareth evans : https://github.com/swagger-api/swagger-codegen.git </description>
+    <url>https://github.com/herveDarritchon/swagger-codegen.git</url>
 
     <licenses>
         <license>
@@ -35,6 +35,10 @@
             <name>Gareth Evans</name>
             <email>gareth@bryncynfelin.co.uk</email>
         </developer>
+        <developer>
+            <name>Darritchon Hervé</name>
+            <email>herve.darritchon@orange.com</email>
+        </developer>
     </developers>
 
     <properties>
@@ -43,9 +47,9 @@
     </properties>
 
     <scm>
-        <connection>scm:git:git@github.com:garethjevans/swagger-codegen-maven-plugin.git</connection>
-        <developerConnection>scm:git:git@github.com:garethjevans/swagger-codegen-maven-plugin.git</developerConnection>
-        <url>https://github.com/garethjevans/swagger-codegen-maven-plugin</url>
+        <connection>scm:git:git@github.com:herveDarritchon/swagger-codegen.git</connection>
+        <developerConnection>scm:git:git@github.com:herveDarritchon/swagger-codegen.git</developerConnection>
+        <url>https://github.com/herveDarritchon/swagger-codegen.git</url>
     </scm>
 
     <dependencies>
