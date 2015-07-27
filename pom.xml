@@ -20,8 +20,8 @@
     <packaging>maven-plugin</packaging>
 
     <name>swagger-codegen-maven-plugin Maven Mojo</name>
-    <description>maven plugin to build modules from swagger codegen. Fork du plugin de gareth evans : https://github.com/swagger-api/swagger-codegen.git </description>
-    <url>https://github.com/herveDarritchon/swagger-codegen.git</url>
+    <description>maven plugin to build modules from swagger codegen. Fork du plugin de gareth evans : https://github.com/garethjevans/swagger-codegen-maven-plugin.git </description>
+    <url>https://github.com/herveDarritchon/swagger-codegen-maven-plugin.git</url>
 
     <licenses>
         <license>
@@ -47,9 +47,9 @@
     </properties>
 
     <scm>
-        <connection>scm:git:git@github.com:herveDarritchon/swagger-codegen.git</connection>
-        <developerConnection>scm:git:git@github.com:herveDarritchon/swagger-codegen.git</developerConnection>
-        <url>https://github.com/herveDarritchon/swagger-codegen.git</url>
+        <connection>scm:git:git@github.com:herveDarritchon/swagger-codegen-maven-plugin.git</connection>
+        <developerConnection>scm:git:git@github.com:herveDarritchon/swagger-codegen-maven-plugin.git</developerConnection>
+        <url>https://github.com/herveDarritchon/swagger-codegen-maven-plugin.git</url>
     </scm>
 
     <dependencies>
